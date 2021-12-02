@@ -1,0 +1,57 @@
+﻿@model IEnumerable<NetBankingApp.Models.Customer>
+
+@{
+    ViewBag.Title = "CustomerDetails";
+}
+
+<h2>Customer Details</h2>
+
+<div>
+    <a class="btn btn-default" href="@Url.Action("AddCustomer", "Admin")" role="button">Create New</a>
+
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountBalance)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountBalance)
+        </td>
+        <td>
+            @Html.ActionLink("AddMoney", "AddBalance", new { id=item.AccountNumber }) |
+            @Html.ActionLink("Details", "ViewCustomer", new { id=item.AccountNumber }) |
+            @Html.ActionLink("Delete", "DeleteAccount", new { id=item.AccountNumber })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    <a class="btn btn-default" href="@Url.Action("AdminLogin", "Login")" role="button">Logout</a>
+
+</div>
